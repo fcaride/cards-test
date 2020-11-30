@@ -8,6 +8,7 @@ const Modal = ({ setShowModal, show, addCard }) => {
     image: "",
     description: "",
   });
+  const { name, image, description } = values;
 
   const handleSubmit = () => {
     addCard(values);
@@ -25,18 +26,21 @@ const Modal = ({ setShowModal, show, addCard }) => {
       <section className="modal-main">
         <header className="headerModal">Nueva tarjeta</header>
         <input
+          value={name}
           name="name"
           className="inputModal"
           placeholder="Titulo"
           onChange={changeHandler}
         />
         <input
+          value={description}
           name="description"
           className="inputModal"
           placeholder="Descripción"
           onChange={changeHandler}
         />
         <input
+          value={image}
           name="image"
           className="inputModal"
           placeholder="Imagen (URL)"
