@@ -1,44 +1,54 @@
 import { useState } from "react";
 import "./styles.css";
 
-const Modal = ({ handleClose, show, addCard }) => {
-  const showHideClassName = show ? "modal display-block" : "modal display-none";
-  const [name, setName] = useState("");
-  const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
+const Modal = ({ setShowModal, show, addCard }) => {
+  const showHideClassName = show ? "display-block" : "display-none";
+  const [values, setValues] = useState({
+    name: "",
+    image: "",
+    description: "",
+  });
 
   const handleSubmit = () => {
-    const cardInfo = {
-      name,
-      image,
-      description,
-    };
-    addCard(cardInfo);
+    addCard(values);
+    setValues({ name: "", image: "", description: "" });
+    setShowModal(false);
+  };
+
+  const changeHandler = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   return (
     <div className={showHideClassName}>
+      <div className="modal" onClick={() => setShowModal(false)} />
       <section className="modal-main">
-        <form className="form-modal" onSubmit={handleSubmit}>
-          <header className="headerModal">Nueva tarjeta</header>
-          <input
-            className="inputModal"
-            placeholder="Titulo"
-            onChange={(event) => setName(event.target.value)}
-          />
-          <input
-            className="inputModal"
-            placeholder="Descripción"
-            onChange={(event) => setDescription(event.target.value)}
-          />
-          <input
-            className="inputModal"
-            placeholder="Imagen (URL)"
-            onChange={(event) => setImage(event.target.value)}
-          />
-          <input type="submit" value="Submit" />
-          <button onClick={() => handleClose(false)}>close</button>
-        </form>
+        <header className="headerModal">Nueva tarjeta</header>
+        <input
+          name="name"
+          className="inputModal"
+          placeholder="Titulo"
+          onChange={changeHandler}
+        />
+        <input
+          name="description"
+          className="inputModal"
+          placeholder="Descripción"
+          onChange={changeHandler}
+        />
+        <input
+          name="image"
+          className="inputModal"
+          placeholder="Imagen (URL)"
+          onChange={changeHandler}
+        />
+        <button
+          value="Añadir"
+          onClick={handleSubmit}
+          className="addButtonModal"
+        >
+          Agregar
+        </button>
       </section>
     </div>
   );

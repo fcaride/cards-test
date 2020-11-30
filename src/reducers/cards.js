@@ -1,14 +1,7 @@
-import { ADD_CARD } from "../constants/ActionTypes";
+import { ADD_CARD, SORT_CARDS } from "../constants/ActionTypes";
 
 const initialState = {
-  cardList: [
-    {
-      name: "Pepe",
-      image: "https://miro.medium.com/max/1400/1*47fUazhRoJgChsgy6YxnzQ.png",
-      description:
-        "This defines the default size of an element before the remaining space is distributed. It can be a length (e.g. 20%, 5rem, etc.) or a keyword. The auto keyword means “look at my width or height property” ",
-    },
-  ],
+  cardList: [],
 };
 
 export default function todos(state = initialState, action) {
@@ -25,6 +18,12 @@ export default function todos(state = initialState, action) {
         cardList: [...state.cardList, newCard],
       };
     }
+    case SORT_CARDS:
+      return {
+        ...state,
+        cardList: action.cardList,
+      };
+
     default:
       return state;
   }
