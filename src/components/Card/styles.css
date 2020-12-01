@@ -28,3 +28,30 @@
   font-size: 12px;
   padding: 8px;
 }
+
+.cardDeleteButton {
+  top: 140px;
+  right: 10px;
+}
+
+.cardEditButton {
+  top: 140px;
+  right: 68px;
+}
+
+.floatingButton {
+  color: grey;
+  font-weight: 500;
+  position: absolute;
+  border: 0;
+  border-radius: 3px;
+  outline: 0;
+}
+
+.floatingButton:hover {
+  background-color: darkgrey;
+}
+
+.image:hover + .floatingButton {
+  display: none;
+}

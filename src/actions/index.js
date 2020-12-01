@@ -16,3 +16,5 @@ export const sortCards = () => (dispatch, getState) => {
   });
   dispatch({ type: types.SORT_CARDS, cardList: sortedList });
 };
+export const removeCard = (id) => ({ type: types.REMOVE_CARD, id });
+export const editCard = (card) => ({ type: types.EDIT_CARD, card });

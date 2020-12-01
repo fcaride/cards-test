@@ -7,12 +7,27 @@ import SortButton from "./components/SortButton/";
 
 const App = () => {
   const [showModal, setShowModal] = useState(false);
+  const [cardToEdit, setCardToEdit] = useState({});
+  const onEditHandler = (cardInfo) => {
+    setShowModal(true);
+    setCardToEdit(cardInfo);
+  };
+
+  const onClickHandler = () => {
+    setShowModal(true);
+    setCardToEdit({});
+  };
+
   return (
     <div className="wrapper">
-      <CardList />
-      <AddButton onClickHandler={setShowModal} />
+      <CardList onEdit={onEditHandler} />
+      <AddButton onClickHandler={onClickHandler} />
       <SortButton />
-      <Modal show={showModal} setShowModal={setShowModal} />
+      <Modal
+        show={showModal}
+        setShowModal={setShowModal}
+        cardToEdit={cardToEdit}
+      />
     </div>
   );
 };

@@ -1,7 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./styles.css";
 
-const Modal = ({ setShowModal, show, addCard }) => {
+const Modal = ({ setShowModal, show, addCard, cardToEdit, editCard }) => {
+  useEffect(() => {
+    setValues({
+      name: cardToEdit.name || "",
+      description: cardToEdit.description || "",
+      image: cardToEdit.image || "",
+    });
+  }, [cardToEdit]);
+
+  const isEditing = !!cardToEdit.id;
+
   const showHideClassName = show ? "display-block" : "display-none";
   const [values, setValues] = useState({
     name: "",
@@ -11,7 +21,11 @@ const Modal = ({ setShowModal, show, addCard }) => {
   const { name, image, description } = values;
 
   const handleSubmit = () => {
-    addCard(values);
+    if (isEditing) {
+      editCard({ ...values, id: cardToEdit.id });
+    } else {
+      addCard(values);
+    }
     setValues({ name: "", image: "", description: "" });
     setShowModal(false);
   };
@@ -51,7 +65,7 @@ const Modal = ({ setShowModal, show, addCard }) => {
           onClick={handleSubmit}
           className="addButtonModal"
         >
-          Agregar
+          {isEditing ? "Editar" : "Agregar"}
         </button>
       </section>
     </div>
