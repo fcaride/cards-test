@@ -27,6 +27,7 @@
   width: 284px;
   font-size: 12px;
   padding: 8px;
+  word-wrap: break-word;
 }
 
 .cardDeleteButton {
@@ -50,8 +51,4 @@
 
 .floatingButton:hover {
   background-color: darkgrey;
-}
-
-.image:hover + .floatingButton {
-  display: none;
 }

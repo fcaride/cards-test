@@ -26,7 +26,6 @@ const Modal = ({ setShowModal, show, addCard, cardToEdit, editCard }) => {
     } else {
       addCard(values);
     }
-    setValues({ name: "", image: "", description: "" });
     setShowModal(false);
   };
 

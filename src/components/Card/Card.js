@@ -1,6 +1,8 @@
+import { useState } from "react";
 import "./styles.css";
 
 const Card = ({ cardInfo, removeCard, onEdit }) => {
+  const [showButtons, setShowButtons] = useState(false);
   const buttons = (
     <div>
       <button
@@ -19,7 +21,11 @@ const Card = ({ cardInfo, removeCard, onEdit }) => {
   );
 
   return (
-    <div className="card">
+    <div
+      className="card"
+      onMouseEnter={() => setShowButtons(true)}
+      onMouseLeave={() => setShowButtons(false)}
+    >
       <img
         src={
           cardInfo.image ||
@@ -29,7 +35,7 @@ const Card = ({ cardInfo, removeCard, onEdit }) => {
         className="image"
       />
       <div className="cardTitle">{cardInfo.name}</div>
-      {buttons}
+      {showButtons && buttons}
       <div className="cardDescription">{cardInfo.description}</div>
     </div>
   );
